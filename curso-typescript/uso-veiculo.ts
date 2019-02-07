@@ -1,0 +1,1 @@
+import {Carro,caminhao,moto} from './exemplo-veiculos'

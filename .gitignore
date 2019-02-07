@@ -1,0 +1,11 @@
+.vs/*
+obj/*
+Properties/*
+Models/*
+bin/*
+App_Data/*
+assets/*
+curso-javascript/node_modules*
+curso-typescript/node_modules*
+curso-node/node_modules*
+curso-node/exemplo-express/node_modules*
