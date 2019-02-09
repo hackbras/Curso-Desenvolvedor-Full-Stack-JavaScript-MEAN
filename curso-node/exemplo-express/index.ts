@@ -27,9 +27,10 @@ app.get('/films',(req,res)=>{
             
             console.log(`número de resultados retornados: ${result.length}`)
             //console.log(`número de resultados retornados: ${result}`)
+            res.render('films',{films: result})
         })
 
     })
-    res.render('films')
+    
 })
 app.listen(3000,()=> console.log('Express rodando na porta 3000'))

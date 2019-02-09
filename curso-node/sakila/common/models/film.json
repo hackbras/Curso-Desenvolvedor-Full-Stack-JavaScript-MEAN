@@ -1,0 +1,28 @@
+{
+    "name":"Film",
+    "plural":"Films",
+    "base":"PersistedModel",
+    "idInjection": true,
+    "options":{
+        "mysql":{
+            "table":"film"
+        }
+    },
+    "properties":{
+        "filmId":{
+            "type":"number",
+            "id":1,
+            "mysql":{
+                "columnName":"film_id",
+                "dataType":"int"
+            }
+        },
+        "title":{
+            "type":"string",
+            "mysql":{
+                "columnName":"title",
+                "dataType":"varchar"
+            }
+        }
+    }
+}
