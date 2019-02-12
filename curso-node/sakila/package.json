@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint"
+    "test": "./node_modules/.bin/mocha -r ts-node/register --recursive test\\**\\*.ts"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
+    "@types/supertest": "^2.0.7",
     "chai": "^4.2.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
