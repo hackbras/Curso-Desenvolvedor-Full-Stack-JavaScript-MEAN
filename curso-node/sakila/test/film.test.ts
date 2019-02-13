@@ -49,4 +49,34 @@ describe('testes sobre filmes',function(){
             expect(response.body.filmId).to.exist
         })
     })
+    describe("CT0003 - consultar filmes usando filtros",function(){
+        it("teste",async function(){
+            //buscar um filme por titulo
+            let title = "ACADEMY DINOSAUR"
+            let film: Film = await app.models.Film.findOne({
+                where: {
+                    title: title
+                }
+            })
+
+            console.log(`filme encontrado: ${film != null ? 'sim' : 'não'}`)
+            expect(film).to.exist
+            expect(film.filmId).to.exist
+
+        })
+        it("buscar por custo de substituição e classificação",async function(){
+            //buscar os filmes que estejam na classificação r,g ou pg
+            // e o custo da substituição seja superior a 15,00
+            let films: Film[] = await app.models.Film.find({
+                where:{
+                    and:[
+                        {rating:{inq: ['R','G','PG']}},
+                        {replacementCost: {gt: 15}}
+                    ]
+                }
+            })
+            console.log(`número de filmes encontrados: ${films.length}`)
+
+        })
+    })
 })

@@ -35,8 +35,12 @@
     "dataSource": "db",
     "public": false
   },
-  "Film":{
-    "dataSource":"sakilaDS",
-    "public":true
+  "Film": {
+    "dataSource": "sakilaDS",
+    "public": true
+  },
+  "Language": {
+    "dataSource": "sakilaDS",
+    "public": true
   }
 }

@@ -23,6 +23,20 @@
                 "columnName":"title",
                 "dataType":"varchar"
             }
+        },
+        "replacementCost":{
+            "type":"number",
+            "mysql":{
+                "columnName":"replacement_cost",
+                "dataType":"decimal"
+            }
+        },
+        "rating":{
+            "type":"string",
+            "mysql":{
+                "columnName":"rating",
+                "dataType":"varchar"
+            }
         }
     }
 }
