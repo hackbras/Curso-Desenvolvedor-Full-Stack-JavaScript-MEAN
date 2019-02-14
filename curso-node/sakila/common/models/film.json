@@ -38,5 +38,26 @@
                 "dataType":"varchar"
             }
         }
-    }
+    },
+    "relations":{
+        "language":{
+            "type":"belongsTo",
+            "model":"Language",
+            "foreignKey":"language_id"
+        }
+    },
+    "acls":[
+        {
+            "accessType":"*",
+            "principalType":"ROLE",
+            "principalId":"$everyone",
+            "permission":"DENY"
+        },
+        {
+            "accessType":"READ",
+            "principalType":"ROLE",
+            "principalId":"$authenticated",
+            "permission":"ALLOW"
+        }
+    ]
 }

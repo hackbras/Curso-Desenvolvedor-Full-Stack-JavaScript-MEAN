@@ -3,6 +3,7 @@ const expect = chai.expect
 const app = require('../server/server')
 import * as supertest from 'supertest'
 import { Film } from '../common/models/types/film';
+import { Language } from '../common/models/types/language';
 
 describe('testes sobre filmes',function(){
     describe("CT0001 - listar todos os ilmes", function(){
@@ -77,6 +78,19 @@ describe('testes sobre filmes',function(){
             })
             console.log(`número de filmes encontrados: ${films.length}`)
 
+        })
+    })
+    describe("CT0005 - buscar filmes com os idiomas",function(){
+        it("teste",async function(){
+            let films: Film[] = await app.models.Film.find({
+                include: ['language']
+            })
+
+            // let language:Language[] = film.map(f=>f.language)
+
+            // languages.foreach(l => console.log(l.nome))
+
+            console.log(JSON.stringify(films[0]))
         })
     })
 })

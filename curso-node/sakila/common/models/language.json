@@ -54,5 +54,13 @@
         "nullable": "N"
       }
     }
+    
+  },
+  "relations":{
+    "films":{
+      "type":"hasMany",
+      "model":"Film",
+      "foreignKey":"language_id"
+    }
   }
 }

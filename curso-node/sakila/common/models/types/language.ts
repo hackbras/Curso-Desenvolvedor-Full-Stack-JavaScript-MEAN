@@ -1,6 +1,10 @@
+import { Film } from "./film";
+
 export class Language{
-    filmId?:number
-    title?:string
-    replacementCost?:number
-    rating?:string
+    languageId?:number
+    name?:string
+    lastUpdate?:string
+    films?:Film[]
+
+    toJSON?:() => Language
 }
