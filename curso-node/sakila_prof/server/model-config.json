@@ -43,16 +43,16 @@
     "dataSource": "sakilaDS",
     "public": true
   },
-  "Inventory": {
-    "Datasource": "sakilaDS",
+  "Customer": {
+    "dataSource": "sakilaDS",
     "public": true
   },
-  "Customer": {
-    "Datasource": "sakilaDS",
+  "Inventory": {
+    "dataSource": "sakilaDS",
     "public": true
   },
   "Rental": {
-    "Datasource": "sakilaDS",
+    "dataSource": "sakilaDS",
     "public": true
   }
 }

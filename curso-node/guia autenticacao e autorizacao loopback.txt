@@ -1,0 +1,35 @@
+Guia rápido de autenticação e autorização no Loopback
+
+Sempre que uma requisição HTTP é feita em um endpoint de um modelo (ex. /api/Films) as ACL's são verificadas da seguinte maneira:
+
+1) Verifica-se com quais das ACL's definidas a requisição "casa".
+2) Cada casamento é classificado com um nível: -1 = não há casamento, 2 = casamento aproximado, 3 = casamento exato.
+Exemplo de casamento aproximado:
+{
+            "accessType": "*",
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission":"DENY"
+}
+O accessType está com um wildcard, o que configura casamento aproximado.
+
+Exemplo de casamento exato:
+
+{
+            "accessType": "READ",
+            "principalType": "ROLE",
+            "principalId": "$authenticated",
+            "permission":"ALLOW"
+}
+
+Aqui não há wildcard.
+
+Em cada nível (-1, 2 e 3) aplica-se um DENY ou um ALLOW.
+
+O DENY sempre tem precedência em sobre um ALLOW
+
+Logo, se para o nível 2 foi obtido um DENY e um ALLOW, o DENY prevalece, negando o acesso ao recurso.
+
+Porém, por exemplo, se no nível 2 foi obtido um DENY e no nível 3 foi obtido um ALLOW, neste caso, o ALLOW prevalece, concedendo acesso ao recurso.
+
+O ALLOW só terá precedência sobre o DENY se estiver em um nível acima dele.

@@ -44,6 +44,11 @@
             "type":"belongsTo",
             "model":"Language",
             "foreignKey":"language_id"
+        },
+        "inventory":{
+            "type":"hasmany",
+            "model":"Inventory",
+            "foreignKey":"inventory_id"        
         }
     },
     "acls":[

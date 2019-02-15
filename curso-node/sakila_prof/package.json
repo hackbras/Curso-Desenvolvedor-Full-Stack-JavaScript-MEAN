@@ -1,5 +1,5 @@
 {
-  "name": "sakila-alunos",
+  "name": "sakila",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
@@ -7,8 +7,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
-    "test": "./node_modules/.bin/mocha -r ts-node/register --recursive test\\**\\*.ts"
+    "start": "ts-node .",
+    "test": "./node_modules/.bin/mocha -r ts-node/register --recursive test\\**\\*.ts",
+    "test-debug": "./node_modules/.bin/mocha --inspect-brk=9229 -r ts-node/register --recursive test\\**\\*.ts"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -39,5 +40,5 @@
     "url": ""
   },
   "license": "UNLICENSED",
-  "description": "sakila-alunos"
+  "description": "sakila"
 }
