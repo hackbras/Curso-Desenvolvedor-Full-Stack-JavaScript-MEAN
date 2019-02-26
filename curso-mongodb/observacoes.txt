@@ -1,0 +1,30 @@
+mongodb
+
+comandos:
+	use blog--(dizer que utilizaará determinado banco)
+	db.post.insert({"title":"Primeiro Post do blog"}) --(efetuar um cadastro no banco)
+	show dbs --(Exibir bancos)
+	show collections--exibir coleções
+	db.post.find()
+	db.post.findOne()._id.getTimestamp()
+	db.post.findOne()._id.getTimestamp()
+	db.post.find().toArray().forEach(d=>print(d))
+
+	db.post.updateMany({title:"Introdução ao docker"},{
+ 	  $set: {
+  	      published: false
+   	 }
+	})
+
+	db.getCollection('post').find({likes:{
+  	  $gt: 10
+	}},{
+    		title:1,
+    		likes:1,
+    		_id: 0
+	})
+
+obs.:
+	collection similar as tabelas dos bancos relacionais e documento similar aos registrosou linhas.	
+		
+robo3t
