@@ -48,6 +48,12 @@ db.video_movieDetails.find({
 })
 
 7) busque filmes que tenham 4 atores listados
+
+db.video_movieDetails.find({
+    actors: {$size: 4}
+})
+
+
 8) busque filmes que tiveram mais de 15 vitórias no awards
 9) quantos filmes tiveram a classificação acima de 5 no imdb? lembre-se que vc pode usar a função count() com o retorno do find() para saber a quantidade
 
