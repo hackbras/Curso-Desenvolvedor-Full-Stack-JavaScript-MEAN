@@ -1,16 +1,16 @@
 mongodb
 
 comandos:
-	use blog--(dizer que utilizaará determinado banco)
+	use blog--(dizer que utilizaarï¿½ determinado banco)
 	db.post.insert({"title":"Primeiro Post do blog"}) --(efetuar um cadastro no banco)
 	show dbs --(Exibir bancos)
-	show collections--exibir coleções
+	show collections--exibir coleï¿½ï¿½es
 	db.post.find()
 	db.post.findOne()._id.getTimestamp()
 	db.post.findOne()._id.getTimestamp()
 	db.post.find().toArray().forEach(d=>print(d))
 
-	db.post.updateMany({title:"Introdução ao docker"},{
+	db.post.updateMany({title:"Introduï¿½ï¿½o ao docker"},{
  	  $set: {
   	      published: false
    	 }
@@ -23,6 +23,52 @@ comandos:
     		likes:1,
     		_id: 0
 	})
+
+	db.getCollection('post').find({title: /.*python.*/i})
+	db.getCollection('post').find({title: /.*python.*/i})
+	db.post.find({author: /(Guilherme|Camila)/i})
+	db.post.find({deleted:{$exists:false}})
+	db.post.find({tags:"data science"})
+
+	db.post.find({tags:
+		{$all: ['data science','python']}
+		
+	})
+
+	/*Posts com 2 commentarios*/
+	db.post.find({
+		comments: {
+			$size:2
+		}    
+	})
+
+	/*consulta com agregaÃ§Ã£o usando a expressÃ£o $expr*/
+	db.post.find({
+    $expr:{
+        $gt:[
+            {$size:"$likes"},50
+        ],
+        $lt:[
+            {$size:"$likes"},100
+        ]
+    }
+
+	/*todos os comentarios  feitos peo felipe*/
+	db.post.find({comments:{
+		$elemMatch:{
+			author:"Felipe"
+		}
+	}})
+
+	db.post.find({comments:{
+		$elemMatch:{
+			author:"Felipe"
+		}
+	}},{title:1,"comments.$":1})
+
+
+})
+
 
 obs.:
 	collection similar as tabelas dos bancos relacionais e documento similar aos registrosou linhas.	

@@ -1,0 +1,53 @@
+1) busque filmes que foram lançados entre 1990 e 2000
+
+db.getCollection('video_movieDetails').find({    
+    year:{
+        $gt:1990,
+        $lt:2000
+        } 
+})
+
+2) busque filmes com a classificação (rated) PG-13 e R. use expressão regular e o operador $in. veja como o operador $in funciona olhando a documentação
+usando expressão regular:
+
+db.video_movieDetails.find({
+    rated: /(PG-13|^R$)/i
+})
+
+db.video_movieDetails.find({
+    rated: {$in: ['PG-13','R']}
+})
+
+3) busque filmes que foram escritos por Sergio Leone
+
+db.video_movieDetails.find({
+    writers: "Sergio Leone"
+})
+
+4) busque filmes que foram exibidos tanto na Itália quanto nos USA
+db.video_movieDetails.find({    
+    $and:[
+        {countries: /.*italy.*/i},
+        {countries: /.*usa.*/i}
+    ]    
+    
+})
+
+5) busque filmes que tem os atores Charles Bronson e Henry Fonda
+db.video_movieDetails.find({    
+    $and:[
+        {actors: /.*charles bronson.*/i},
+        {actors: /.*henry fonda.*/i}
+    ]    
+    
+})
+
+6) busque filmes que obtiveram notas acima de 90 no tomato. OBS: perceba que tomato é um objeto embutido. NÓS NÃO CHEGAMOS A VER DOCUMENTOS EMBUTIDOS DIRETAMENTE, SOMENTE EM ARRAYS. mas você pode fazer a consulta tal como faz em uma propriedade usando a notação  "tomato.meter", por exemplo. o mongo entende que vc está buscando a propriedade meter no documento embutido tomato
+db.video_movieDetails.find({    
+    "tomato.meter": {$gt:90}    
+})
+
+7) busque filmes que tenham 4 atores listados
+8) busque filmes que tiveram mais de 15 vitórias no awards
+9) quantos filmes tiveram a classificação acima de 5 no imdb? lembre-se que vc pode usar a função count() com o retorno do find() para saber a quantidade
+
