@@ -55,5 +55,11 @@ db.video_movieDetails.find({
 
 
 8) busque filmes que tiveram mais de 15 vitórias no awards
+db.video_movieDetails.find({
+     "awards.wins": {$gt:15}
+})
 9) quantos filmes tiveram a classificação acima de 5 no imdb? lembre-se que vc pode usar a função count() com o retorno do find() para saber a quantidade
+db.video_movieDetails.find({
+     "imdb.rating": {$gt:5}
+}).count()
 
