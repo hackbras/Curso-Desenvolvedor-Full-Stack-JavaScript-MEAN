@@ -70,6 +70,112 @@ comandos:
 })
 
 
+/*Comandos 27/02*/
+
+db.post.aggregate([
+    {$project:{"title":1,"numberOfTags":{$size:"$tags"}}},
+    {$match:{"numberOfTags":3}}
+])
+    
+db.post.aggregate([
+    {$project:{
+        title:1,
+        year:{$year:"$_id"},
+        month:{$month:"$_id"}
+    }
+   }
+])    
+
+
+db.post.updateOne(
+	{_id:ObjectId("5c748c154f26784f3d98a4e3")},
+	{$set: {author:"Camila"}}
+
+)
+
+db.post.find({_id:ObjectId("5c748c154f26784f3d98a4e3")})
+
+
+db.post.aggregate([
+    {$group:{
+        _id:"author",
+        count:{$sum:1},
+        totalComments: {$sum: {$size:{$ifNull:["$comments",[]]}}}
+       }
+    }
+])
+
+db.post.aggregate([
+    {$group:{
+        _id:"author",
+        count:{$sum:1},
+        totalComments: {$sum: {$size:{$ifNull:["$comments",[]]}}}
+       }
+    },{
+
+$match:{
+        count:{
+           $gt:3
+        }       
+    }},
+    {$project:{"_id":1}}
+])
+
+
+db.post.aggregate([
+    {$unwind: "$tags"},
+    {$group: {
+        _id: "$tags",
+        count:{$sum: 1}
+    }},
+    {$project:
+        {_id: {$cond:
+                [{$eq:["$_id",".net"]},"net","$_id"]
+            }
+        }
+    },
+    {$sort: {"count": -1}},
+    
+])
+
+var years = db.video_movieDetails.find({},{year:1}).toArray().map(d=>d.year)
+
+var min = years.sort()[0]
+var max = years.sort()[years.length - 1 ]
+
+var boundaries = []
+
+for (var i = min ;i <= max+20; i +=20){
+    print(i)
+    if(i>max){
+        boundaries.push(max)
+    }else{
+        boundaries.push(i)
+    }
+}
+
+db.video_movieDetails.aggregate([{
+        $bucket:{
+            groupBy:"$year",
+            boundaries:boundaries,            
+            default:"other",
+            output:{
+                    count:{$sum:1},
+                    titles:{$push:"$titles"}
+            }
+        }
+    }])
+
+
+var grouped = db.video_movieDetails.group({
+            key:{title:1},
+            cond:{year:2013},
+            reduce: function(curr,result){result.count++},
+            initial:{count:0}
+})
+
+print(grouped.filter(d => d.count > 1))
+
 obs.:
 	collection similar as tabelas dos bancos relacionais e documento similar aos registrosou linhas.	
 		
