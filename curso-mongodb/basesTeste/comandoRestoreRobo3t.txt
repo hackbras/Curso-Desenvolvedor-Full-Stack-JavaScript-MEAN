@@ -1,0 +1,4 @@
+rode o comando:
+
+mongorestore c:\pokemons
+mongorestore c:\movies

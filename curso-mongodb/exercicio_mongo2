@@ -1,0 +1,57 @@
+
+
+1) busque os pokemons que tenham 2 evoluções
+
+db.samples_pokemon.find({
+   next_evolution:{$size:2}
+})
+
+
+2) informe quantos pokemons precisam de 2, 5, 10 ou nenhum kilometros para alcancá-los (propriedade egg).
+ explicação: este banco é baseado no jogo Pokemon Go, lá para obter pokemons vc pode andar alguns kilometros e "chocar" os ovos deles
+
+
+3) busque os pokemons que são simultaneamento do tipo água (Water) e gelo (Ice)
+db.samples_pokemon.find({
+   $and:[
+    {type:/.*water.*/i},
+    {type:/.*Ice.*/i}
+    ]
+})
+
+
+4) qual a média das alturas dos pokemons de fogo?
+
+
+db.samples_pokemon.aggregate([
+    {$unwind:"$type"},
+    {$match:{"type":"Fire"}},
+    {$group:{
+            _id:"type",
+            mediaAltura:{$avg:"$height"}
+        }}
+])
+
+5) mostre o tempo de desova (spawn_time) de cada pokemon em segundos. escreva um algoritmo em javascript mesmo
+
+var pokemons = db.samples_pokemon.find({},{name: 1,spawn_time: 1})
+
+pokemons.forEach(p => {
+    if (p.spawn_time != null) {
+        var minutes = p.spawn_time.substring(0,2)
+        var seconds = p.spawn_time.substring(3,5)
+        p.totalSeconds = Number(minutes) * 60 + Number(seconds)
+        print(p)
+    }
+})
+
+var pokemons = db.samples_pokemon.find({},{name: 1,spawn_time: 1})
+
+pokemons.forEach(p => {
+    if (p.spawn_time != null) {
+        var minutes = p.spawn_time.substring(0,2)
+        var seconds = p.spawn_time.substring(3,5)
+        p.totalSeconds = Number(minutes) * 60 + Number(seconds)
+        print(p)
+    }
+})
