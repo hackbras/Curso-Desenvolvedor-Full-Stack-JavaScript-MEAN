@@ -11,6 +11,12 @@ db.samples_pokemon.find({
  explicação: este banco é baseado no jogo Pokemon Go, lá para obter pokemons vc pode andar alguns kilometros e "chocar" os ovos deles
 
 
+db.samples_pokemon.aggregate([
+    {$group: {
+        _id: "$egg",
+        count: {$sum: 1}
+    }}
+])
 3) busque os pokemons que são simultaneamento do tipo água (Water) e gelo (Ice)
 db.samples_pokemon.find({
    $and:[
